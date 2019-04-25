@@ -31,7 +31,7 @@ pipeline {
     stage('Set-Env-Variables') {
       steps {
         sh '''
-	  echo 'Hello = ${AWS_SECRET_ACCESS_KEY}'
+	  echo "Hello = ${AWS_SECRET_ACCESS_KEY}"
 	  echo 'Hello - $AWS_SECRET_ACCESS_KEY'
 	  echo $AWS_SECRET_ACCESS_KEY
 	  echo ${AWS_SECRET_ACCESS_KEY}
@@ -67,7 +67,7 @@ pipeline {
                 	"data": {
 	                	"attributes": {
 		                	"key": "AWS_SECRET_ACCESS_KEY",
-		                	"value": "$AWS_SECRET_ACCESS_KEY",
+		                	"value": \"$AWS_SECRET_ACCESS_KEY\",
 		                	"category": "env",
 		                	"hcl": false,
 		                	"sensitive": false
