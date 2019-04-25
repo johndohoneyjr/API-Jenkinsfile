@@ -14,11 +14,8 @@ pipeline {
        OUTPUT           = "bundle.tar.gz"
   }
   stages {
-
-    stage('checkout') {
-      steps {
-        sh 'ls -lag'
-      }
+    stage ('Checkout') {
+      checkout scm
     }
     stage('Set Variables') {
         steps {
