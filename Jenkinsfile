@@ -38,11 +38,35 @@ pipeline {
             -d '{
                 	"data": {
 	                	"attributes": {
-		                	"key": "AWS_ACCESS_KEY_ID9",
-		                	"value": "foo",
+		                	"key": "AWS_ACCESS_KEY_ID",
+		                	"value": "$aws_access_key_id",
 		                	"category": "env",
 		                	"hcl": false,
-		                	"sensitive": true
+		                	"sensitive": false
+		                 },
+	               	"relationships": {
+	                		"workspace": {
+		                		"data": {
+		               			"type": "workspaces",
+		              			"id": "ws-wLCcZ16gZJoy6is3"
+			                	}
+			               }
+		               }
+	                }
+              }'
+	      
+          curl -X POST \
+            https://${address}/api/v2/vars \
+            -H "authorization: Bearer $ATLAS_TOKEN" \
+            -H 'content-type: application/vnd.api+json' \
+            -d '{
+                	"data": {
+	                	"attributes": {
+		                	"key": "AWS_SECRET_ACCESS_KEY",
+		                	"value": "${aws_secret_access_key}",
+		                	"category": "env",
+		                	"hcl": false,
+		                	"sensitive": false
 		                 },
 	               	"relationships": {
 	                		"workspace": {
@@ -58,11 +82,6 @@ pipeline {
       }
     }
     stage('Configuration-Version') {
-       agent {
-           docker {
-              image 'python:2-alpine'
-            }
-        }
         steps {
            sh '''
             echo "Workspace ID: " $workspaceId
