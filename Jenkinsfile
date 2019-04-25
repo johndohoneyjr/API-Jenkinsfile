@@ -72,7 +72,7 @@ pipeline {
 
             //config_version_id=$(echo $configuration_version_result | python -c "import sys, json; print(json.load(sys.stdin)['data']['id'])")
             //upload_url=$(echo $configuration_version_result | python -c "import sys, json; print(json.load(sys.stdin)['data']['attributes']['upload-url'])")
-            echo "Config Version ID: " $config_version_id
+            // echo "Config Version ID: " $config_version_id
             //echo "Upload URL: " $upload_url
 
            '''
