@@ -31,15 +31,17 @@ pipeline {
     stage('Set-Env-Variables') {
       steps {
         sh '''
+	  echo "Hello = ${aws_access_key_id}"
+	  echo "Hello - $aws_access_key_id"
           curl -X POST \
             https://${address}/api/v2/vars \
             -H "authorization: Bearer $ATLAS_TOKEN" \
             -H "content-type: application/vnd.api+json" \
-            -d "{
-                	\"data\": {
-	                	\"attributes\": {
-		                	\"key\": \"AWS_ACCESS_KEY_ID\",
-		                	\"value\": \"${aws_access_key_id}\",
+            -d '{
+                	"data": {
+	                	"attributes\": {
+		                	"key": "AWS_ACCESS_KEY_ID\",
+		                	"value": "${aws_access_key_id}",
 		                	"category": "env",
 		                	"hcl": false,
 		                	"sensitive": false
@@ -53,7 +55,7 @@ pipeline {
 			               }
 		               }
 	                }
-              }"
+              }'
 	      
           curl -X POST \
             https://${address}/api/v2/vars \
