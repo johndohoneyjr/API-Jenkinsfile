@@ -31,8 +31,8 @@ pipeline {
     stage('Set-Env-Variables') {
       steps {
         sh '''
-	  echo "Hello = ${aws_access_key_id}"
-	  echo "Hello - $aws_access_key_id"
+	  echo 'Hello = ${aws_access_key_id}'
+	  echo 'Hello - $aws_access_key_id'
           curl -X POST \
             https://${address}/api/v2/vars \
             -H "authorization: Bearer $ATLAS_TOKEN" \
