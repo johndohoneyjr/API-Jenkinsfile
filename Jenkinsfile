@@ -68,12 +68,12 @@ pipeline {
             echo "Workspace ID: " $workspaceId
             echo "Creating configuration version."
             echo '{"data":{"type":"configuration-version"}}' > ./configversion.json
-            configuration_version_result=$(curl --header "Authorization: Bearer $ATLAS_TOKEN" --header "Content-Type: application/vnd.api+json" --data @configversion.json "https://${address}/api/v2/workspaces/${workspaceId}/configuration-versions")
+            //configuration_version_result=$(curl --header "Authorization: Bearer $ATLAS_TOKEN" --header "Content-Type: application/vnd.api+json" --data @configversion.json "https://${address}/api/v2/workspaces/${workspaceId}/configuration-versions")
 
-            config_version_id=$(echo $configuration_version_result | python -c "import sys, json; print(json.load(sys.stdin)['data']['id'])")
-            upload_url=$(echo $configuration_version_result | python -c "import sys, json; print(json.load(sys.stdin)['data']['attributes']['upload-url'])")
+            ''config_version_id=$(echo $configuration_version_result | python -c "import sys, json; print(json.load(sys.stdin)['data']['id'])")
+            //upload_url=$(echo $configuration_version_result | python -c "import sys, json; print(json.load(sys.stdin)['data']['attributes']['upload-url'])")
             echo "Config Version ID: " $config_version_id
-            echo "Upload URL: " $upload_url
+            //echo "Upload URL: " $upload_url
 
            '''
         }
