@@ -6,8 +6,8 @@ pipeline {
   }
   environment {
        ATLAS_TOKEN           = "${env.ATLAS_TOKEN}"
-       aws_access_key_id     = "${env.AWS_ACCESS_KEY_ID}"
-       aws_secret_access_key = "${env.AWS_SECRET_ACCESS_KEY}"
+       AWS_ACCESS_KEY_ID     = "${env.AWS_ACCESS_KEY_ID}"
+       AWS_SECRET_ACCESS_KEY = "${env.AWS_SECRET_ACCESS_KEY}"
        address               = "app.terraform.io"
        organization          = "johndohoneyjr"
        workspace             = "test-api"
@@ -31,10 +31,10 @@ pipeline {
     stage('Set-Env-Variables') {
       steps {
         sh '''
-	  echo 'Hello = ${aws_access_key_id}'
-	  echo 'Hello - $aws_access_key_id'
-	  echo $aws_access_key_id
-	  echo ${aws_access_key_id}
+	  echo 'Hello = ${AWS_SECRET_ACCESS_KEY}'
+	  echo 'Hello - $AWS_SECRET_ACCESS_KEY'
+	  echo $AWS_SECRET_ACCESS_KEY
+	  echo ${AWS_SECRET_ACCESS_KEY}
           curl -X POST \
             https://${address}/api/v2/vars \
             -H "authorization: Bearer $ATLAS_TOKEN" \
@@ -43,7 +43,7 @@ pipeline {
                 	"data": {
 	                	"attributes\": {
 		                	"key": "AWS_ACCESS_KEY_ID\",
-		                	"value": "${aws_access_key_id}",
+		                	"value": "$AWS_ACCESS_KEY_ID",
 		                	"category": "env",
 		                	"hcl": false,
 		                	"sensitive": false
@@ -67,7 +67,7 @@ pipeline {
                 	"data": {
 	                	"attributes": {
 		                	"key": "AWS_SECRET_ACCESS_KEY",
-		                	"value": "${aws_secret_access_key}",
+		                	"value": "$AWS_SECRET_ACCESS_KEY",
 		                	"category": "env",
 		                	"hcl": false,
 		                	"sensitive": false
