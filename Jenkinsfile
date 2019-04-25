@@ -32,10 +32,7 @@ pipeline {
       steps {
         sh '''
 	  echo "Quoting Hell"
-	  echo "Hello = ${AWS_SECRET_ACCESS_KEY}"
-	  echo 'Hello - \"$AWS_SECRET_ACCESS_KEY\"'
-	  echo "{ \"KEY\" : \"$AWS_SECRET_ACCESS_KEY\"}"
-	  echo ${AWS_SECRET_ACCESS_KEY}
+	  echo "{ \""KEY\"" : \""$AWS_SECRET_ACCESS_KEY\""}"
 	  echo
           curl -X POST \
             https://${address}/api/v2/vars \
