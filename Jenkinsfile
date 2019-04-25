@@ -32,29 +32,26 @@ pipeline {
       steps {
         sh '''
           curl -X POST \
-            https://app.terraform.io/api/v2/vars \
+            https://${address}/api/v2/vars \
             -H "authorization: Bearer $ATLAS_TOKEN" \
             -H 'content-type: application/vnd.api+json' \
             -d '{
                 	"data": {
 	                	"attributes": {
 		                	"key": "AWS_ACCESS_KEY_ID",
-		                	"value": "$aws_access_key_id",
+		                	"value": "${aws_access_key_id}",
 		                	"category": "env",
 		                	"hcl": false,
-		                	"sensitive": true,
-		                	"read-only": false,
-		                	"created-at": null
+		                	"sensitive": true
 		                 },
 	               	"relationships": {
 	                		"workspace": {
 		                		"data": {
 		               			"type": "workspaces",
-		              			"id": "$workspaceId"
+		              			"id": "${workspaceId}"
 			                	}
 			               }
-		               },
-	              	"type": "vars"
+		               }
 	                }
               }'
         '''
