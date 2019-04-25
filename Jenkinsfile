@@ -34,12 +34,12 @@ pipeline {
           curl -X POST \
             https://${address}/api/v2/vars \
             -H "authorization: Bearer $ATLAS_TOKEN" \
-            -H 'content-type: application/vnd.api+json' \
-            -d '{
+            -H "content-type: application/vnd.api+json" \
+            -d "{
                 	"data": {
 	                	"attributes": {
 		                	"key": "AWS_ACCESS_KEY_ID",
-		                	"value": "$aws_access_key_id",
+		                	"value": "${aws_access_key_id}",
 		                	"category": "env",
 		                	"hcl": false,
 		                	"sensitive": false
@@ -53,7 +53,7 @@ pipeline {
 			               }
 		               }
 	                }
-              }'
+              }"
 	      
           curl -X POST \
             https://${address}/api/v2/vars \
